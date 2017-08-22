@@ -34,7 +34,8 @@ class Token
     {
         $token = Request::instance()->header('token');
         $vars = Cache::get($token);
-        if (!$vars){
+
+        if (empty($vars)){
             throw new TokenException();
         }
 
@@ -47,6 +48,8 @@ class Token
         }else{
             throw new Exception('尝试获取的Token变量并不存在');
         }
+
+
 
     }
 
@@ -91,7 +94,19 @@ class Token
         }else{
             throw new TokenException();
         }
+    }
 
+    public static function isValidOperate($checkedUID)
+    {
+        if (!$checkedUID){
+            throw new Exception('检测UID时必须传入一个被检测的UID');
+        }
+        $currentOperateUID = self::getCurrentUid();
+
+        if ($checkedUID != $currentOperateUID){
+            throw new Exception('检测UID不通过');
+        }
+        return true;
     }
 
 }

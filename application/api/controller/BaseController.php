@@ -14,11 +14,13 @@ use think\Controller;
 
 class BaseController extends Controller
 {
+    //管理员权限验证
     protected function checkExclusiveScope()
     {
         TokenService::needExclusiveScope();
     }
 
+    //用户权限验证
     protected function checkPrimaryScope()
     {
         TokenService::needPrimaryScope();
