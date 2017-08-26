@@ -8,4 +8,5 @@
 
 return [
   'token_salt' => 'HDfeDMpt4xa2',
+    'pay_back_url' => 'http://z.cn/api/v1/pay/notify',
 ];
